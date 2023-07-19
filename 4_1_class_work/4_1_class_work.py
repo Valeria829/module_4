@@ -1,4 +1,6 @@
-def str_pol():
-    s = input('Введите полиндром: ')
-    print(s == s[::-1]) 
-str_pol()
+def palindrome(s):
+     print(s[::-1] == s)
+
+while True:
+    s = input('введите слово: ')
+    palindrome(s)
