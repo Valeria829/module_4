@@ -1,5 +1,5 @@
 def palindrome(s):
-     print(s[::-1] == s)
+     return(s[::-1] == s)
 
 while True:
     s = input('введите слово: ')
