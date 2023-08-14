@@ -12,7 +12,7 @@ class Advertisement(models.Model):
     auction = models.BooleanField('торг', help_text='отметьте, если торг уместен')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    image = models.ImageField('изображение', upload_to='advertisements')
     user = models.ForeignKey(User, verbose_name='пользователь', on_delete=models.CASCADE)
 
     def __str__(self):
@@ -37,3 +37,8 @@ class Advertisement(models.Model):
                 '<span style="color: green; font-weight: bold;">Сегодня в {}</span>', created_time
             )
         return self.updated_at.strftime("%d.%m.%Y в %H:%M:%S")
+
+    @admin.display(description='фото')
+    def get_html_image(self):
+        if self.image:
+            return format_html('<img scr="{url}" style="max-width: 80px; max-height: 80px;"', url=self.image.url)
